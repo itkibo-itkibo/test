@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Landing Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .features {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+        
+        .feature {
+            flex: 1;
+            min-width: 250px;
+            margin: 1rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .feature i {
+            font-size: 2.5rem;
+            color: #6e8efb;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        /* Estilos para el botón de chat */
+        .chat-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-btn i {
+            font-size: 1.8rem;
+        }
+        
+        .chat-btn:hover {
+            transform: scale(1.1);
+            background: #128C7E;
+        }
+        
+        /* Chat box (oculto inicialmente) */
+        .chat-box {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+            overflow: hidden;
+        }
+        
+        .chat-header {
+            background: #25d366;
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .chat-body {
+            padding: 1rem;
+            height: 300px;
+            overflow-y: auto;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        
+        .send-btn {
+            background: #25d366;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0 1rem;
+            margin-left: 0.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .features {
+                flex-direction: column;
+            }
+            
+            .chat-box {
+                width: 90%;
+                right: 5%;
+                bottom: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Bienvenido a Nuestra Empresa</h1>
+            <p>La mejor solución para tus necesidades digitales</p>
+            <a href="#contacto" class="btn">Contáctanos</a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section id="nosotros">
+            <h2>Sobre Nosotros</h2>
+            <p>Somos una empresa dedicada a proporcionar soluciones digitales innovadoras para negocios de todos los tamaños. Nuestro equipo de expertos está listo para ayudarte a alcanzar tus objetivos.</p>
+        </section>
+        
+        <section id="servicios">
+            <h2>Nuestros Servicios</h2>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Desarrollo Web</h3>
+                    <p>Sitios web a medida con las últimas tecnologías para garantizar el mejor rendimiento.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Aplicaciones Móviles</h3>
+                    <p>Desarrollamos aplicaciones nativas e híbridas para iOS y Android.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Marketing Digital</h3>
+                    <p>Estrategias personalizadas para aumentar tu presencia en línea y generar leads.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <p>¿Listo para comenzar tu próximo proyecto? ¡Contáctanos hoy mismo!</p>
+            <form>
+                <div style="margin-bottom: 1rem;">
+                    <input type="text" placeholder="Nombre" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <input type="email" placeholder="Email" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <textarea placeholder="Mensaje" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; height: 120px;"></textarea>
+                </div>
+                <button type="submit" class="btn">Enviar Mensaje</button>
+            </form>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Mi Empresa. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- Botón de chat -->
+    <div class="chat-btn" id="chatButton">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+    
+    <!-- Chat box -->
+    <div class="chat-box" id="chatBox">
+        <div class="chat-header">
+            <span>Chat de Soporte</span>
+            <button class="close-btn" id="closeChat">&times;</button>
+        </div>
+        <div class="chat-body">
+            <p style="text-align: center; color: #666; margin-top: 1rem;">¡Hola! ¿En qué podemos ayudarte hoy?</p>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Escribe tu mensaje...">
+            <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    
+    <script>
+        // Funcionalidad del chat
+        const chatButton = document.getElementById('chatButton');
+        const chatBox = document.getElementById('chatBox');
+        const closeChat = document.getElementById('closeChat');
+        
+        chatButton.addEventListener('click', () => {
+            chatBox.style.display = chatBox.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        closeChat.addEventListener('click', () => {
+            chatBox.style.display = 'none';
+        });
+        
+        // Cerrar chat al hacer clic fuera
+        document.addEventListener('click', (event) => {
+            if (!chatBox.contains(event.target) && event.target !== chatButton) {
+                chatBox.style.display = 'none';
+            }
+        });
+      <script src="https://cdn.pulse.is/livechat/loader.js" data-live-chat-id="67ec6e7497240c7d2d0190a7" async></script>
+    </script>
+</body>
+</html>
