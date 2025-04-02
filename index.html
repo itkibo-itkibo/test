@@ -94,7 +94,7 @@
         }
         
         /* Estilos para el botón de chat */
-        .chat-btn {
+        .pulse-chat-btn {
             position: fixed;
             bottom: 30px;
             right: 30px;
@@ -111,88 +111,21 @@
             justify-content: center;
             z-index: 1000;
             transition: all 0.3s ease;
+            border: none;
         }
         
-        .chat-btn i {
+        .pulse-chat-btn i {
             font-size: 1.8rem;
         }
         
-        .chat-btn:hover {
+        .pulse-chat-btn:hover {
             transform: scale(1.1);
             background: #128C7E;
-        }
-        
-        /* Chat box (oculto inicialmente) */
-        .chat-box {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 350px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            display: none;
-            overflow: hidden;
-        }
-        
-        .chat-header {
-            background: #25d366;
-            color: white;
-            padding: 1rem;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .close-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-        
-        .chat-body {
-            padding: 1rem;
-            height: 300px;
-            overflow-y: auto;
-        }
-        
-        .chat-input {
-            display: flex;
-            padding: 1rem;
-            border-top: 1px solid #eee;
-        }
-        
-        .chat-input input {
-            flex: 1;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            outline: none;
-        }
-        
-        .send-btn {
-            background: #25d366;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 0 1rem;
-            margin-left: 0.5rem;
-            cursor: pointer;
         }
         
         @media (max-width: 768px) {
             .features {
                 flex-direction: column;
-            }
-            
-            .chat-box {
-                width: 90%;
-                right: 5%;
-                bottom: 80px;
             }
         }
     </style>
@@ -257,48 +190,43 @@
         </div>
     </footer>
     
-    <!-- Botón de chat -->
-    <div class="chat-btn" id="chatButton">
+    <!-- Botón de chat personalizado que activará el chat de Pulse -->
+    <button class="pulse-chat-btn" id="pulseChatButton">
         <i class="fas fa-comment-dots"></i>
-    </div>
+    </button>
     
-    <!-- Chat box -->
-    <div class="chat-box" id="chatBox">
-        <div class="chat-header">
-            <span>Chat de Soporte</span>
-            <button class="close-btn" id="closeChat">&times;</button>
-        </div>
-        <div class="chat-body">
-            <p style="text-align: center; color: #666; margin-top: 1rem;">¡Hola! ¿En qué podemos ayudarte hoy?</p>
-        </div>
-        <div class="chat-input">
-            <input type="text" placeholder="Escribe tu mensaje...">
-            <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
+    <!-- Script de Pulse Live Chat -->
+    <script src="https://cdn.pulse.is/livechat/loader.js" data-live-chat-id="67ec6e7497240c7d2d0190a7" async></script>
     
     <script>
-        // Funcionalidad del chat
-        const chatButton = document.getElementById('chatButton');
-        const chatBox = document.getElementById('chatBox');
-        const closeChat = document.getElementById('closeChat');
-        
-        chatButton.addEventListener('click', () => {
-            chatBox.style.display = chatBox.style.display === 'block' ? 'none' : 'block';
-        });
-        
-        closeChat.addEventListener('click', () => {
-            chatBox.style.display = 'none';
-        });
-        
-        // Cerrar chat al hacer clic fuera
-        document.addEventListener('click', (event) => {
-            if (!chatBox.contains(event.target) && event.target !== chatButton) {
-                chatBox.style.display = 'none';
+        // Función para activar el chat de Pulse cuando se hace clic en nuestro botón personalizado
+        document.getElementById('pulseChatButton').addEventListener('click', function() {
+            // Verificamos si el widget de Pulse está cargado
+            if (window.PulseLiveChat) {
+                PulseLiveChat.toggle();
+            } else {
+                // Si Pulse no está cargado aún, mostramos un mensaje
+                alert('El chat se está cargando, por favor intente nuevamente en unos segundos.');
             }
         });
-      <script src="https://cdn.pulse.is/livechat/loader.js" data-live-chat-id="67ec6e7497240c7d2d0190a7" async></script>
+        
+        // Opcional: Cambiar el ícono cuando el chat está abierto
+        document.addEventListener('DOMContentLoaded', function() {
+            // Esta parte requiere que Pulse emita eventos que podamos escuchar
+            // Dependiendo de la API de Pulse, podrías necesitar ajustar esto
+            window.addEventListener('message', function(event) {
+                if (event.data && event.data.type === 'pulse-chat-state') {
+                    const icon = document.querySelector('#pulseChatButton i');
+                    if (event.data.isOpen) {
+                        icon.classList.remove('fa-comment-dots');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-comment-dots');
+                    }
+                }
+            });
+        });
     </script>
-<script src="https://cdn.pulse.is/livechat/loader.js" data-live-chat-id="67ec6e7497240c7d2d0190a7" async></script>
 </body>
 </html>
