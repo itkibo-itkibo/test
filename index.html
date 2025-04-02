@@ -93,41 +93,7 @@
             margin-top: 2rem;
         }
         
-        /* Estilos para el botón de chat */
-        .pulse-chat-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            transition: all 0.3s ease;
-            border: none;
-        }
         
-        .pulse-chat-btn i {
-            font-size: 1.8rem;
-        }
-        
-        .pulse-chat-btn:hover {
-            transform: scale(1.1);
-            background: #128C7E;
-        }
-        
-        @media (max-width: 768px) {
-            .features {
-                flex-direction: column;
-            }
-        }
     </style>
 </head>
 <body>
@@ -193,35 +159,5 @@
     <!-- Script de Pulse Live Chat -->
     <script src="https://cdn.pulse.is/livechat/loader.js" data-live-chat-id="67ec6e7497240c7d2d0190a7" async></script>
     
-    <script>
-        // Función para activar el chat de Pulse cuando se hace clic en nuestro botón personalizado
-        document.getElementById('pulseChatButton').addEventListener('click', function() {
-            // Verificamos si el widget de Pulse está cargado
-            if (window.PulseLiveChat) {
-                PulseLiveChat.toggle();
-            } else {
-                // Si Pulse no está cargado aún, mostramos un mensaje
-                alert('El chat se está cargando, por favor intente nuevamente en unos segundos.');
-            }
-        });
-        
-        // Opcional: Cambiar el ícono cuando el chat está abierto
-        document.addEventListener('DOMContentLoaded', function() {
-            // Esta parte requiere que Pulse emita eventos que podamos escuchar
-            // Dependiendo de la API de Pulse, podrías necesitar ajustar esto
-            window.addEventListener('message', function(event) {
-                if (event.data && event.data.type === 'pulse-chat-state') {
-                    const icon = document.querySelector('#pulseChatButton i');
-                    if (event.data.isOpen) {
-                        icon.classList.remove('fa-comment-dots');
-                        icon.classList.add('fa-times');
-                    } else {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-comment-dots');
-                    }
-                }
-            });
-        });
-    </script>
 </body>
 </html>
